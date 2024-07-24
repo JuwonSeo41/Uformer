@@ -17,7 +17,7 @@ class Options():
         parser.add_argument('--lr_initial', type=float, default=0.0002, help='initial learning rate')
         parser.add_argument('--step_lr', type=int, default=50, help='weight decay')
         parser.add_argument('--weight_decay', type=float, default=0.02, help='weight decay')
-        parser.add_argument('--gpu', type=str, default='6,7', help='GPUs')
+        parser.add_argument('--gpu', type=str, default='0', help='GPUs')
         parser.add_argument('--arch', type=str, default ='Uformer_B',  help='archtechture')
         parser.add_argument('--mode', type=str, default ='motiondeblur',  help='image restoration mode')
         parser.add_argument('--dd_in', type=int, default=3, help='dd_in')
