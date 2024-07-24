@@ -114,7 +114,7 @@ class DataLoaderVal_deblur(Dataset):
         self.tar_filenames = [os.path.join(target_dir, x) for x in tar_files]
 
         self.img_options = img_options
-        self.tar_size       = len(self.tar_filenames)  # get the size of target
+        self.tar_size = len(self.tar_filenames)  # get the size of target
 
         self.ps = self.img_options['patch_size'] if img_options is not None else None
 
@@ -146,11 +146,11 @@ class DataLoaderVal_deblur(Dataset):
 ##################################################################################################
 
 class DataLoaderTest(Dataset):
-    def __init__(self, inp_dir, img_options):
+    def __init__(self, blur_dir, target_dir, img_options):
         super(DataLoaderTest, self).__init__()
 
-        inp_files = sorted(os.listdir(inp_dir))
-        self.inp_filenames = [os.path.join(inp_dir, x) for x in inp_files if is_image_file(x)]
+        inp_files = sorted(os.listdir(blur_dir))
+        self.inp_filenames = [os.path.join(blur_dir, x) for x in inp_files]
 
         self.inp_size = len(self.inp_filenames)
         self.img_options = img_options
@@ -168,15 +168,18 @@ class DataLoaderTest(Dataset):
         return inp, filename
 
 
-def get_training_data(rgb_dir, img_options):
-    assert os.path.exists(rgb_dir)
-    return DataLoaderTrain(rgb_dir, img_options, None)
+def get_training_data(blur_dir, target_dir, img_options):
+    assert os.path.exists(blur_dir)
+    assert os.path.exists(target_dir)
+    return DataLoaderTrain(blur_dir, target_dir, img_options, None)
 
 
-def get_validation_deblur_data(rgb_dir, img_options=None):
-    assert os.path.exists(rgb_dir)
-    return DataLoaderVal_deblur(rgb_dir, img_options, None)
+def get_validation_deblur_data(blur_dir, target_dir, img_options=None):
+    assert os.path.exists(blur_dir)
+    assert os.path.exists(target_dir)
+    return DataLoaderVal_deblur(blur_dir, target_dir, img_options, None)
 
-def get_test_data(rgb_dir, img_options=None):
-    assert os.path.exists(rgb_dir)
-    return DataLoaderTest(rgb_dir, img_options)
+def get_test_data(blur_dir, target_dir, img_options=None):
+    assert os.path.exists(blur_dir)
+    assert os.path.exists(target_dir)
+    return DataLoaderTest(blur_dir, target_dir, img_options)
