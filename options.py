@@ -11,7 +11,7 @@ class Options():
         parser.add_argument('--nepoch', type=int, default=300, help='training epochs')
         parser.add_argument('--train_workers', type=int, default=0, help='train_dataloader workers')
         parser.add_argument('--eval_workers', type=int, default=0, help='eval_dataloader workers')
-        parser.add_argument('--dataset', type=str, default ='SIDD')
+        parser.add_argument('--dataset', type=str, default ='PV')
         parser.add_argument('--pretrain_weights',type=str, default='', help='path of pretrained_weights')
         parser.add_argument('--optimizer', type=str, default ='adamw', help='optimizer for training')
         parser.add_argument('--lr_initial', type=float, default=0.0002, help='initial learning rate')
