@@ -23,7 +23,7 @@ class Options():
         parser.add_argument('--dd_in', type=int, default=3, help='dd_in')
 
         # args for saving 
-        parser.add_argument('--save_dir', type=str, default ='/content/drive/MyDrive/Colab Notebooks/Uformer/restored',  help='save dir')
+        parser.add_argument('--save_dir', type=str, default ='/content/drive/MyDrive/Colab Notebooks/Uformer',  help='save dir')
         parser.add_argument('--save_images', action='store_true',default=True)
         parser.add_argument('--env', type=str, default ='_',  help='env')
         parser.add_argument('--checkpoint', type=int, default=50, help='checkpoint')
