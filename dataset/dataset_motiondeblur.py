@@ -18,19 +18,16 @@ def is_image_file(filename):
     
 ##################################################################################################
 class DataLoaderTrain(Dataset):
-    def __init__(self, rgb_dir, img_options=None, target_transform=None):
+    def __init__(self, blur_dir, target_dir, img_options=None, target_transform=None):
         super(DataLoaderTrain, self).__init__()
 
         self.target_transform = target_transform
         
-        gt_dir = 'groundtruth' 
-        input_dir = 'input'
+        clean_files = sorted(os.listdir(target_dir))
+        noisy_files = sorted(os.listdir(blur_dir))
         
-        clean_files = sorted(os.listdir(os.path.join(rgb_dir, gt_dir)))
-        noisy_files = sorted(os.listdir(os.path.join(rgb_dir, input_dir)))
-        
-        self.clean_filenames = [os.path.join(rgb_dir, gt_dir, x) for x in clean_files if is_png_file(x)]
-        self.noisy_filenames = [os.path.join(rgb_dir, input_dir, x)       for x in noisy_files if is_png_file(x)]
+        self.clean_filenames = [os.path.join(target_dir, x) for x in clean_files]
+        self.noisy_filenames = [os.path.join(blur_dir, x) for x in noisy_files]
         
         self.img_options=img_options
 
@@ -75,21 +72,16 @@ class DataLoaderTrain(Dataset):
 
 ##################################################################################################
 class DataLoaderVal(Dataset):
-    def __init__(self, rgb_dir, target_transform=None):
+    def __init__(self, blur_dir, target_dir, target_transform=None):
         super(DataLoaderVal, self).__init__()
 
         self.target_transform = target_transform
 
-        gt_dir = 'groundtruth'
-        input_dir = 'input'
+        clean_files = sorted(os.listdir(target_dir))
+        noisy_files = sorted(os.listdir(blur_dir))
         
-        clean_files = sorted(os.listdir(os.path.join(rgb_dir, gt_dir)))
-        noisy_files = sorted(os.listdir(os.path.join(rgb_dir, input_dir)))
-
-
-        self.clean_filenames = [os.path.join(rgb_dir, gt_dir, x) for x in clean_files if is_png_file(x)]
-        self.noisy_filenames = [os.path.join(rgb_dir, input_dir, x) for x in noisy_files if is_png_file(x)]
-        
+        self.clean_filenames = [os.path.join(target_dir, x) for x in clean_files]
+        self.noisy_filenames = [os.path.join(blur_dir, x) for x in noisy_files]
 
         self.tar_size = len(self.clean_filenames)  
 
@@ -112,14 +104,14 @@ class DataLoaderVal(Dataset):
         return clean, noisy, clean_filename, noisy_filename
 
 class DataLoaderVal_deblur(Dataset):
-    def __init__(self, rgb_dir, img_options=None, rgb_dir2=None):
+    def __init__(self, blur_dir, target_dir, img_options=None, rgb_dir2=None):
         super(DataLoaderVal_deblur, self).__init__()
 
-        inp_files = sorted(os.listdir(os.path.join(rgb_dir, 'input')))
-        tar_files = sorted(os.listdir(os.path.join(rgb_dir, 'groundtruth')))
+        inp_files = sorted(os.listdir(blur_dir))
+        tar_files = sorted(os.listdir(target_dir))
 
-        self.inp_filenames = [os.path.join(rgb_dir, 'input', x)  for x in inp_files if is_png_file(x)]
-        self.tar_filenames = [os.path.join(rgb_dir, 'groundtruth', x) for x in tar_files if is_png_file(x)]
+        self.inp_filenames = [os.path.join(blur_dir, x)  for x in inp_files]
+        self.tar_filenames = [os.path.join(target_dir, x) for x in tar_files]
 
         self.img_options = img_options
         self.tar_size       = len(self.tar_filenames)  # get the size of target
