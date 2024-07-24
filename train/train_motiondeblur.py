@@ -210,9 +210,9 @@ for epoch in range(start_epoch, opt.nepoch + 1):
                                 'optimizer' : optimizer.state_dict()
                                 }, os.path.join(model_dir,"model_best.pth"))
 
-                print("[Ep %d it %d\t PSNR SIDD: %.4f\t] ----  [best_Ep_SIDD %d best_it_SIDD %d Best_PSNR_SIDD %.4f] " % (epoch, i, psnr_val_rgb,best_epoch,best_iter,best_psnr))
+                print("[Epoch %d iter %d\t PSNR: %.4f\t] ----  [best_Epoch %d best_iter %d Best_PSNR %.4f] " % (epoch, i, psnr_val_rgb,best_epoch,best_iter,best_psnr))
                 with open(logname,'a') as f:
-                    f.write("[Ep %d it %d\t PSNR SIDD: %.4f\t] ----  [best_Ep_SIDD %d best_it_SIDD %d Best_PSNR_SIDD %.4f] " \
+                    f.write("[Epoch %d iter %d\t PSNR: %.4f\t] ----  [best_Epoch %d best_iter %d Best_PSNR %.4f] " \
                         % (epoch, i, psnr_val_rgb,best_epoch,best_iter,best_psnr)+'\n')
                 model_restoration.train()
                 torch.cuda.empty_cache()
