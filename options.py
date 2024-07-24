@@ -23,8 +23,8 @@ class Options():
         parser.add_argument('--dd_in', type=int, default=3, help='dd_in')
 
         # args for saving 
-        parser.add_argument('--save_dir', type=str, default ='./logs/',  help='save dir')
-        parser.add_argument('--save_images', action='store_true',default=False)
+        parser.add_argument('--save_dir', type=str, default ='/content/drive/MyDrive/Colab Notebooks/Uformer/restored',  help='save dir')
+        parser.add_argument('--save_images', action='store_true',default=True)
         parser.add_argument('--env', type=str, default ='_',  help='env')
         parser.add_argument('--checkpoint', type=int, default=50, help='checkpoint')
 
@@ -51,8 +51,8 @@ class Options():
         parser.add_argument('--train_ps', type=int, default=128, help='patch size of training sample')
         parser.add_argument('--val_ps', type=int, default=128, help='patch size of validation sample')
         parser.add_argument('--resume', action='store_true',default=False)
-        parser.add_argument('--train_dir', type=str, default ='./datasets/SIDD/train',  help='dir of train data')
-        parser.add_argument('--val_dir', type=str, default ='./datasets/SIDD/val',  help='dir of train data')
+        parser.add_argument('--train_dir', type=str, default ='/content/2_fold_datasets/PV/blurred/1st/Train',  help='dir of train data')
+        parser.add_argument('--val_dir', type=str, default ='/content/2_fold_datasets/PV/blurred/1st/Val',  help='dir of train data')
         parser.add_argument('--warmup', action='store_true', default=False, help='warmup') 
         parser.add_argument('--warmup_epochs', type=int,default=3, help='epochs for warmup') 
 
