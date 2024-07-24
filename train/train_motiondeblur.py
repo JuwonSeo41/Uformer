@@ -10,6 +10,8 @@ print(dir_name)
 import argparse
 import options
 ######### parser ###########
+parser.add_argument('--train_dir', type=str, default='/content/2_fold_datasets/PV/blurred/1st/Train', help='path to training dataset')
+parser.add_argument('--val_dir', type=str, default='/content/2_fold_datasets/PV/blurred/1st/Val', help='path to validation dataset')
 opt = options.Options().init(argparse.ArgumentParser(description='Image motion deblurring')).parse_args()
 print(opt)
 
