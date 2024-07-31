@@ -27,9 +27,11 @@ from skimage.metrics import structural_similarity as ssim_loss
 parser = argparse.ArgumentParser(description='Image motion deblurring evaluation on GoPro/HIDE')
 parser.add_argument('--input_dir', default='/data1/wangzd/datasets/deblurring/GoPro/test/',
     type=str, help='Directory of validation images')
-parser.add_argument('--result_dir', default='/data1/wangzd/uformer_cvpr/results_release/deblurring/GoPro/Uformer_B/',
+parser.add_argument('--target_dir', default='/data1/wangzd/datasets/deblurring/GoPro/test/',
+    type=str, help='')
+parser.add_argument('--result_dir', default='/content/drive/Mydrive/Colab Notebooks/Uformer/motiondeblur/PV/Uformer_B/restored',
     type=str, help='Directory for results')
-parser.add_argument('--weights', default='/data1/wangzd/uformer_cvpr/logs/motiondeblur/GoPro/Uformer_B_1129/models/model_best.pth',
+parser.add_argument('--weights', default='/content/drive/Mydrive/Colab Notebooks/Uformer/motiondeblur/PV/Uformer_B/models/model_best.pth',
     type=str, help='Path to weights')
 parser.add_argument('--gpus', default='0', type=str, help='CUDA_VISIBLE_DEVICES')
 parser.add_argument('--arch', default='Uformer_B', type=str, help='arch')
@@ -108,9 +110,9 @@ with torch.no_grad():
         psnr_val_rgb.append(psnr)
         ssim_val_rgb.append(ssim)
         print("PSNR:",psnr,", SSIM:", ssim, filenames[0], rgb_restored.shape)
-        utils.save_img(os.path.join(args.result_dir,filenames[0]+'.PNG'), img_as_ubyte(rgb_restored))
+        utils.save_img(os.path.join(args.result_dir,filenames[0]+'.jpg'), img_as_ubyte(rgb_restored))
         with open(os.path.join(args.result_dir,'psnr_ssim.txt'),'a') as f:
-            f.write(filenames[0]+'.PNG ---->'+"PSNR: %.4f, SSIM: %.4f] "% (psnr, ssim)+'\n')
+            f.write(filenames[0]+'.jpg ---->'+"PSNR: %.4f, SSIM: %.4f] "% (psnr, ssim)+'\n')
 psnr_val_rgb = sum(psnr_val_rgb)/len(test_dataset)
 ssim_val_rgb = sum(ssim_val_rgb)/len(test_dataset)
 print("PSNR: %f, SSIM: %f " %(psnr_val_rgb,ssim_val_rgb))
