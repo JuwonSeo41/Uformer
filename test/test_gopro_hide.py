@@ -74,20 +74,20 @@ model_restoration.cuda()
 model_restoration.eval()
 
 
-def expand2square(timg,factor=16.0):
-    _, _, h, w = timg.size()
+# def expand2square(timg,factor=16.0):
+#     _, _, h, w = timg.size()
 
-    X = int(math.ceil(max(h,w)/float(factor))*factor)
+#     X = int(math.ceil(max(h,w)/float(factor))*factor)
 
-    img = torch.zeros(1,3,X,X).type_as(timg) # 3, h,w
-    mask = torch.zeros(1,1,X,X).type_as(timg)
+#     img = torch.zeros(1,3,X,X).type_as(timg) # 3, h,w
+#     mask = torch.zeros(1,1,X,X).type_as(timg)
 
-    # print(img.size(),mask.size())
-    # print((X - h)//2, (X - h)//2+h, (X - w)//2, (X - w)//2+w)
-    img[:,:, ((X - h)//2):((X - h)//2 + h),((X - w)//2):((X - w)//2 + w)] = timg
-    mask[:,:, ((X - h)//2):((X - h)//2 + h),((X - w)//2):((X - w)//2 + w)].fill_(1)
+#     # print(img.size(),mask.size())
+#     # print((X - h)//2, (X - h)//2+h, (X - w)//2, (X - w)//2+w)
+#     img[:,:, ((X - h)//2):((X - h)//2 + h),((X - w)//2):((X - w)//2 + w)] = timg
+#     mask[:,:, ((X - h)//2):((X - h)//2 + h),((X - w)//2):((X - w)//2 + w)].fill_(1)
     
-    return img, mask
+#     return img, mask
 
 
 with torch.no_grad():
@@ -95,11 +95,12 @@ with torch.no_grad():
     ssim_val_rgb = []
     for ii, data_test in enumerate(tqdm(test_loader), 0):
         rgb_gt = data_test[0].numpy().squeeze().transpose((1,2,0))
-        rgb_noisy, mask = expand2square(data_test[1].cuda(), factor=128) 
+        # rgb_noisy, mask = expand2square(data_test[1].cuda(), factor=128) 
+        rgb_inp = data_test[1].cuda()
         filenames = data_test[2]
 
-        rgb_restored = model_restoration(rgb_noisy)
-        rgb_restored = torch.masked_select(rgb_restored,mask.bool()).reshape(1,3,rgb_gt.shape[0],rgb_gt.shape[1])
+        rgb_restored = model_restoration(rgb_inp)
+        # rgb_restored = torch.masked_select(rgb_restored,mask.bool()).reshape(1,3,rgb_gt.shape[0],rgb_gt.shape[1])
         rgb_restored = torch.clamp(rgb_restored,0,1).cpu().numpy().squeeze().transpose((1,2,0))
 
         psnr = psnr_loss(rgb_restored, rgb_gt)
