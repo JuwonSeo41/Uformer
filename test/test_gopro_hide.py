@@ -105,16 +105,16 @@ with torch.no_grad():
         # rgb_restored = torch.masked_select(rgb_restored,mask.bool()).reshape(1,3,rgb_gt.shape[0],rgb_gt.shape[1])
         rgb_restored = torch.clamp(rgb_restored,0,1).cpu().numpy().squeeze().transpose((1,2,0))
 
-        psnr = psnr_loss(rgb_restored, rgb_gt)
+        # psnr = psnr_loss(rgb_restored, rgb_gt)
         # ssim = ssim_loss(rgb_restored, rgb_gt, multichannel=True)
-        psnr_val_rgb.append(psnr)
-        ssim_val_rgb.append(ssim)
-        print("PSNR:",psnr,", SSIM:", ssim, filenames[0], rgb_restored.shape)
+        # psnr_val_rgb.append(psnr)
+        # ssim_val_rgb.append(ssim)
+        # print("PSNR:",psnr,", SSIM:", ssim, filenames[0], rgb_restored.shape)
         utils.save_img(os.path.join(args.result_dir,filenames[0]+'.jpg'), img_as_ubyte(rgb_restored))
-        with open(os.path.join(args.result_dir,'psnr_ssim.txt'),'a') as f:
-            f.write(filenames[0]+'.jpg ---->'+"PSNR: %.4f, SSIM: %.4f] "% (psnr, ssim)+'\n')
-psnr_val_rgb = sum(psnr_val_rgb)/len(test_dataset)
-ssim_val_rgb = sum(ssim_val_rgb)/len(test_dataset)
-print("PSNR: %f, SSIM: %f " %(psnr_val_rgb,ssim_val_rgb))
-with open(os.path.join(args.result_dir,'psnr_ssim.txt'),'a') as f:
-    f.write("Arch:"+args.arch+", PSNR: %.4f, SSIM: %.4f] "% (psnr_val_rgb, ssim_val_rgb)+'\n')
+        # with open(os.path.join(args.result_dir,'psnr_ssim.txt'),'a') as f:
+            # f.write(filenames[0]+'.jpg ---->'+"PSNR: %.4f, SSIM: %.4f] "% (psnr, ssim)+'\n')
+# psnr_val_rgb = sum(psnr_val_rgb)/len(test_dataset)
+# ssim_val_rgb = sum(ssim_val_rgb)/len(test_dataset)
+# print("PSNR: %f, SSIM: %f " %(psnr_val_rgb,ssim_val_rgb))
+# with open(os.path.join(args.result_dir,'psnr_ssim.txt'),'a') as f:
+    # f.write("Arch:"+args.arch+", PSNR: %.4f, SSIM: %.4f] "% (psnr_val_rgb, ssim_val_rgb)+'\n')
