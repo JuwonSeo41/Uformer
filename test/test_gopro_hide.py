@@ -29,7 +29,7 @@ parser.add_argument('--blur_dir', default='/content/2_fold_datasets/PV/blurred/1
     type=str, help='Directory of test images')
 parser.add_argument('--target_dir', default='/content/2_fold_datasets/PV/original/1st/Test',
     type=str, help='')
-parser.add_argument('--result_dir', default='/content/drive/Mydrive/Colab Notebooks/Uformer/motiondeblur/PV/Uformer_B/restored',
+parser.add_argument('--result_dir', default='/content/drive/MyDrive/Colab Notebooks/Uformer/motiondeblur/PV/Uformer_B/restored',
     type=str, help='Directory for results')
 parser.add_argument('--weights', default='/content/drive/Mydrive/Colab Notebooks/Uformer/motiondeblur/PV/Uformer_B/models/model_best.pth',
     type=str, help='Path to weights')
