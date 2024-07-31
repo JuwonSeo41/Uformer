@@ -24,7 +24,7 @@ from skimage import img_as_float32, img_as_ubyte
 from skimage.metrics import peak_signal_noise_ratio as psnr_loss
 from skimage.metrics import structural_similarity as ssim_loss
 
-parser = argparse.ArgumentParser(description='Image motion deblurring evaluation on GoPro/HIDE')
+parser = argparse.ArgumentParser(description='Image motion deblurring evaluation')
 parser.add_argument('--blur_dir', default='/content/2_fold_datasets/PV/blurred/1st/Test',
     type=str, help='Directory of test images')
 parser.add_argument('--target_dir', default='/content/2_fold_datasets/PV/original/1st/Test',
@@ -64,7 +64,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus
 utils.mkdir(args.result_dir)
 
 test_dataset = get_validation_deblur_data(args.blur_dir, args.target_dir)
-test_loader = DataLoader(dataset=test_dataset, batch_size=1, shuffle=False, num_workers=8, drop_last=False)
+test_loader = DataLoader(dataset=test_dataset, batch_size=1, shuffle=False, num_workers=0, drop_last=False)
 
 model_restoration= utils.get_arch(args)
 # model_restoration = torch.nn.DataParallel(model_restoration)
