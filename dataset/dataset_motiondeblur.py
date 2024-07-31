@@ -152,7 +152,11 @@ class DataLoaderTest(Dataset):
         inp_files = sorted(os.listdir(blur_dir))
         self.inp_filenames = [os.path.join(blur_dir, x) for x in inp_files]
 
+        tar_files = sorted(os.listdir(target_dir))
+        self.tar_filenames = [os.path.join(target_dir, x) for x in tar_files]
+
         self.inp_size = len(self.inp_filenames)
+        self.tar_size = len(self.tar_filenames)
         self.img_options = img_options
 
     def __len__(self):
@@ -164,8 +168,13 @@ class DataLoaderTest(Dataset):
         filename = os.path.splitext(os.path.split(path_inp)[-1])[0]
         inp = Image.open(path_inp)
 
+        path_tar = self.tar_filenames[index]
+        filename = os.path.splitext(os.path.split(path_tar)[-1])[0]
+        tar = Image.open(path_tar)
+
         inp = TF.to_tensor(inp)
-        return inp, filename
+        tar = TF.to_tensor(tar)
+        return tar, inp, filename
 
 
 def get_training_data(blur_dir, target_dir, img_options):
