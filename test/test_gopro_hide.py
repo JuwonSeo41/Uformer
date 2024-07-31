@@ -106,7 +106,7 @@ with torch.no_grad():
         rgb_restored = torch.clamp(rgb_restored,0,1).cpu().numpy().squeeze().transpose((1,2,0))
 
         psnr = psnr_loss(rgb_restored, rgb_gt)
-        ssim = ssim_loss(rgb_restored, rgb_gt, multichannel=True)
+        # ssim = ssim_loss(rgb_restored, rgb_gt, multichannel=True)
         psnr_val_rgb.append(psnr)
         ssim_val_rgb.append(ssim)
         print("PSNR:",psnr,", SSIM:", ssim, filenames[0], rgb_restored.shape)
