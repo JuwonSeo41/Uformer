@@ -161,7 +161,7 @@ print('===> Start Epoch {} End Epoch {}'.format(start_epoch,opt.nepoch))
 best_psnr = 0
 best_epoch = 0
 best_iter = 0
-eval_now = len(train_loader)//4
+eval_now = len(train_loader)
 print("\nEvaluation after every {} Iterations !!!\n".format(eval_now))
 
 loss_scaler = NativeScaler()
