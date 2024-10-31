@@ -7,7 +7,7 @@ class Options():
 
     def init(self, parser):        
         # global settings
-        parser.add_argument('--batch_size', type=int, default=2, help='batch size')
+        parser.add_argument('--batch_size', type=int, default=4, help='batch size')
         parser.add_argument('--nepoch', type=int, default=300, help='training epochs')
         parser.add_argument('--train_workers', type=int, default=0, help='train_dataloader workers')
         parser.add_argument('--eval_workers', type=int, default=0, help='eval_dataloader workers')
@@ -52,10 +52,10 @@ class Options():
         parser.add_argument('--train_ps', type=int, default=128, help='patch size of training sample')
         parser.add_argument('--val_ps', type=int, default=128, help='patch size of validation sample')
         parser.add_argument('--resume', action='store_true',default=True)
-        parser.add_argument('--train_blur_dir', type=str, default ='/content/2_fold_datasets/PV/blurred/1st/Train',  help='dir of train data')
-        parser.add_argument('--train_target_dir', type=str, default ='/content/2_fold_datasets/PV/original/1st/Train',  help='dir of train data')
-        parser.add_argument('--val_blur_dir', type=str, default ='/content/2_fold_datasets/PV/blurred/1st/Val',  help='dir of train data')
-        parser.add_argument('--val_target_dir', type=str, default ='/content/2_fold_datasets/PV/original/1st/Val',  help='dir of train data')
+        parser.add_argument('--train_blur_dir', type=str, default ='/content/2_fold_datasets/PV/blurred/2nd/Train',  help='dir of train data')
+        parser.add_argument('--train_target_dir', type=str, default ='/content/2_fold_datasets/PV/original/2nd/Train',  help='dir of train data')
+        parser.add_argument('--val_blur_dir', type=str, default ='/content/2_fold_datasets/PV/blurred/2nd/Val',  help='dir of train data')
+        parser.add_argument('--val_target_dir', type=str, default ='/content/2_fold_datasets/PV/original/2nd/Val',  help='dir of train data')
         parser.add_argument('--warmup', action='store_true', default=False, help='warmup') 
         parser.add_argument('--warmup_epochs', type=int,default=3, help='epochs for warmup') 
 
