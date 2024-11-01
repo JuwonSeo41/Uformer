@@ -50,7 +50,7 @@ class Options():
         # args for training
         parser.add_argument('--train_ps', type=int, default=128, help='patch size of training sample')
         parser.add_argument('--val_ps', type=int, default=128, help='patch size of validation sample')
-        parser.add_argument('--resume', action='store_true',default=False)
+        parser.add_argument('--resume', action='store_true',default=True)
         parser.add_argument('--train_blur_dir', type=str, default ='/content/2_fold_datasets/PV/blurred/2nd/Train',  help='dir of train data')
         parser.add_argument('--train_target_dir', type=str, default ='/content/2_fold_datasets/PV/original/2nd/Train',  help='dir of train data')
         parser.add_argument('--val_blur_dir', type=str, default ='/content/2_fold_datasets/PV/blurred/2nd/Val',  help='dir of train data')
