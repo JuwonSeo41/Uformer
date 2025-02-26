@@ -25,11 +25,11 @@ from skimage.metrics import peak_signal_noise_ratio as psnr_loss
 from skimage.metrics import structural_similarity as ssim_loss
 
 parser = argparse.ArgumentParser(description='Image motion deblurring evaluation')
-parser.add_argument('--blur_dir', default='/content/2_fold_datasets/PV/blurred/2nd/Test',
+parser.add_argument('--blur_dir', default='/content/2_fold_datasets/FP/blurred/1st/Test',
     type=str, help='Directory of test images')
-parser.add_argument('--target_dir', default='/content/2_fold_datasets/PV/original/2nd/Test',
+parser.add_argument('--target_dir', default='/content/2_fold_datasets/FP/original/1st/Test',
     type=str, help='')
-parser.add_argument('--result_dir', default='/content/drive/MyDrive/Colab Notebooks/Uformer/motiondeblur/PV/Uformer_B_/restored',
+parser.add_argument('--result_dir', default='/content/drive/MyDrive/Colab Notebooks/Uformer/motiondeblur/FP/Uformer_B_/restored',
     type=str, help='Directory for results')
 parser.add_argument('--weights', default='/content/drive/MyDrive/Colab Notebooks/Uformer/motiondeblur/PV/Uformer_B_/models/model_best.pth',
     type=str, help='Path to weights')
@@ -54,7 +54,7 @@ parser.add_argument('--global_skip', action='store_true', default=False, help='g
 parser.add_argument('--local_skip', action='store_true', default=False, help='local skip connection')
 parser.add_argument('--vit_share', action='store_true', default=False, help='share vit module')
 
-parser.add_argument('--train_ps', type=int, default=128, help='patch size of training sample')
+parser.add_argument('--train_ps', type=int, default=256, help='patch size of training sample')
 args = parser.parse_args()
 
 
