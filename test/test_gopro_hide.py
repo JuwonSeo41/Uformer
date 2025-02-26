@@ -31,7 +31,7 @@ parser.add_argument('--target_dir', default='/content/2_fold_datasets/FP/origina
     type=str, help='')
 parser.add_argument('--result_dir', default='/content/drive/MyDrive/Colab Notebooks/Uformer/motiondeblur/FP/Uformer_B_/restored',
     type=str, help='Directory for results')
-parser.add_argument('--weights', default='/content/drive/MyDrive/Colab Notebooks/Uformer/motiondeblur/PV/Uformer_B_/models/model_best.pth',
+parser.add_argument('--weights', default='/content/drive/MyDrive/Colab Notebooks/Uformer/motiondeblur/FP/Uformer_B_/models/model_best.pth',
     type=str, help='Path to weights')
 parser.add_argument('--gpus', default='0', type=str, help='CUDA_VISIBLE_DEVICES')
 parser.add_argument('--arch', default='Uformer_B', type=str, help='arch')
