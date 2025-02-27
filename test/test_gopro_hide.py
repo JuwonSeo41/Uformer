@@ -25,9 +25,9 @@ from skimage.metrics import peak_signal_noise_ratio as psnr_loss
 from skimage.metrics import structural_similarity as ssim_loss
 
 parser = argparse.ArgumentParser(description='Image motion deblurring evaluation')
-parser.add_argument('--blur_dir', default='/content/2_fold_datasets/FP/blurred/1st/Test',
+parser.add_argument('--blur_dir', default='/content/2_fold_datasets/FP/blurred/2nd/Test',
     type=str, help='Directory of test images')
-parser.add_argument('--target_dir', default='/content/2_fold_datasets/FP/original/1st/Test',
+parser.add_argument('--target_dir', default='/content/2_fold_datasets/FP/original/2nd/Test',
     type=str, help='')
 parser.add_argument('--result_dir', default='/content/drive/MyDrive/Colab Notebooks/Uformer/motiondeblur/FP/Uformer_B_/restored',
     type=str, help='Directory for results')
